@@ -31,8 +31,11 @@
 *.out
 *.app
 
-#vscode
+# vscode
 .vscode
 
-#build directory
+# build directory
 build
+
+# EMCC
+emscripten
