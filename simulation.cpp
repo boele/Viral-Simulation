@@ -15,9 +15,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "simulation.h"
+#include <algorithm>
 #include <iostream>
 #include <emscripten.h>
 #include <math.h>
+#include <random>
+#include <vector>
 #include "restricted_movement_strategy.h"
 
 namespace corsim
@@ -76,6 +79,7 @@ void Simulation::tick()
     }
 
     int numberInfected = 0;
+    int subject_amount = _subjects.size();
 
     for(Subject& s : _subjects)
     {
@@ -87,14 +91,31 @@ void Simulation::tick()
             numberInfected++;
         }
 
-        if (numberInfected == _subjects.size() / 2)
+        if (numberInfected == subject_amount / 2)
         {
-            int percentage_amount = _subjects.size() * 75 / 100;
+            int percentage_amount = subject_amount * 10 / 100;
+            int random_subject_counter = 0;
+            std::vector<int> subjects_indices;
+            subjects_indices.reserve(subject_amount);
 
-            for (int i = 0; i < percentage_amount; i++)
+            for (size_t i = 0; i < subject_amount; i++)
             {
+                subjects_indices.push_back(i);
+            }
+
+            auto rng = std::default_random_engine {};
+            std::shuffle(std::begin(subjects_indices), std::end(subjects_indices), rng);
+
+            for (auto&& i : subjects_indices)
+            {
+                if (random_subject_counter > percentage_amount)
+                {
+                    break;
+                }
+
                 Subject& s = _subjects[i];
                 s.set_movement_strategy(new RestrictedMovementStrategy());
+                random_subject_counter++;
             }
         }
     }

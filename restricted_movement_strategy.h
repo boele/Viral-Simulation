@@ -8,7 +8,7 @@ namespace corsim
 class RestrictedMovementStrategy : public MovementStrategy 
 {
     public:
-        double get_movement_value() { return 0.3; }
+        double get_movement_value() { return 0.1; }
 };
 
 };
