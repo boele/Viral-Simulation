@@ -25,18 +25,18 @@ ChartJSHandler::~ChartJSHandler(){}
 void ChartJSHandler::communicate_number_infected(int time, int infected)
 {
     EM_ASM({
-            var config = window.myConfig;
-            var myLine = window.myLine;
-            if (config.data.datasets.length > 0) {
-                    config.data.labels.push($0);
+        var config = window.myConfig;
+        var myLine = window.myLine;
+        if (config.data.datasets.length > 0) {
+                config.data.labels.push($0);
 
-                    config.data.datasets.forEach(function(dataset) {
-                        dataset.data.push($1);
-                    });
+                config.data.datasets.forEach(function(dataset) {
+                    dataset.data.push($1);
+                });
 
-                    window.myLine.update();
-                }
-            },time,infected);
+                window.myLine.update();
+            }
+        },time,infected);
 }
 
 }

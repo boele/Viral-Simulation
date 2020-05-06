@@ -15,17 +15,19 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "subject.h"
+#include "movement_strategy.h"
 #include <math.h>
 
 namespace corsim
 {
 
-Subject::Subject(int x, int y, int radius, bool infected)
+Subject::Subject(int x, int y, int radius, bool infected, const MovementStrategy* movement_strategy)
 {
     this->_x = x;
     this->_y = y;
     this->_radius = radius;
     this->_infected = infected;
+    this->_movement_strategy = movement_strategy;
 }
 
 double Subject::x()
@@ -36,6 +38,11 @@ double Subject::x()
 double Subject::y()
 {
     return this->_y;
+}
+
+void Subject::set_movement_strategy(const MovementStrategy* movement_strategy)
+{
+    this->_movement_strategy = movement_strategy;
 }
 
 void Subject::set_x(double x)
@@ -50,11 +57,13 @@ void Subject::set_y(double y)
 
 double Subject::dx()
 {
+    // dx * movement_strategy->get_movement_value()
     return this->_dx;
 }
 
 double Subject::dy()
 {
+    // dy * movement_strategy->get_movement_value()
     return this->_dy;
 }
 
@@ -90,7 +99,8 @@ double Subject::angle()
 
 double Subject::speed()
 {
-    return sqrt(_dx * _dx + _dy * _dy);
+    // return sqrt(_dx * _dx + _dy * _dy);
+    return 0;
 }
 
 }

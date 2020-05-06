@@ -16,6 +16,8 @@
 
 #pragma once 
 
+#include "movement_strategy.h"
+
 namespace corsim
 {
     
@@ -26,7 +28,7 @@ namespace corsim
 class Subject
 {
     public:
-        Subject(int x, int y, int radius, bool infected);
+        Subject(int x, int y, int radius, bool infected, const MovementStrategy* movement_strategy);
         double x();
         double y();
         void set_x(double x);
@@ -36,6 +38,7 @@ class Subject
         int radius(); //Radius needed for collisions
         void set_dx(double dx);
         void set_dy(double dy);
+        void set_movement_strategy(const MovementStrategy* movement_strategy)
         bool infected();
         void infect();
         double angle();
@@ -44,6 +47,7 @@ class Subject
         double _x = 0,_y = 0, _dx = 0, _dy = 0;
         bool _infected = false;
         int _radius = 0;
+        const MovementStrategy* _movement_strategy;
 };
 
 };

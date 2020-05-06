@@ -1,8 +1,11 @@
 #pragma once
 
-#include "movement_strategy.h"
+#include "regular_movement.h"
 
-class RegularMovementStrategy: public MovementStrategy
+namespace corsim
 {
-    
+    int RegularMovementStrategy::get_movement()
+    {
+        return 1;
+    }
 };
