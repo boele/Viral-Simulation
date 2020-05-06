@@ -93,7 +93,7 @@ void Simulation::tick()
 
         if (numberInfected == subject_amount / 2)
         {
-            int percentage_amount = subject_amount * 10 / 100;
+            int percentage_amount = subject_amount * 75 / 100;
             int random_subject_counter = 0;
             std::vector<int> subjects_indices;
             subjects_indices.reserve(subject_amount);
