@@ -21,7 +21,7 @@
 namespace corsim
 {
 
-Subject::Subject(int x, int y, int radius, bool infected, const MovementStrategy* movement_strategy)
+Subject::Subject(int x, int y, int radius, bool infected, MovementStrategy* movement_strategy)
 {
     this->_x = x;
     this->_y = y;
@@ -40,7 +40,7 @@ double Subject::y()
     return this->_y;
 }
 
-void Subject::set_movement_strategy(const MovementStrategy* movement_strategy)
+void Subject::set_movement_strategy(MovementStrategy* movement_strategy)
 {
     this->_movement_strategy = movement_strategy;
 }
@@ -57,14 +57,12 @@ void Subject::set_y(double y)
 
 double Subject::dx()
 {
-    // dx * movement_strategy->get_movement_value()
-    return this->_dx;
+    return this->_dx * this-> _movement_strategy->get_movement_value();
 }
 
 double Subject::dy()
 {
-    // dy * movement_strategy->get_movement_value()
-    return this->_dy;
+    return this->_dy * this->_movement_strategy->get_movement_value();
 }
 
 void Subject::set_dx(double dx)
@@ -99,8 +97,7 @@ double Subject::angle()
 
 double Subject::speed()
 {
-    // return sqrt(_dx * _dx + _dy * _dy);
-    return 0;
+    return sqrt(_dx * _dx + _dy * _dy);
 }
 
 }

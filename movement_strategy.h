@@ -3,9 +3,11 @@
 namespace corsim
 {
 
-class MovementStrategy {
+class MovementStrategy 
+{
     public: 
-        virtual int get_movement() = 0;
+        virtual ~MovementStrategy(){};
+        virtual double get_movement_value() = 0;
 };
 
-}
+};
