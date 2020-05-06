@@ -1,7 +1,7 @@
 MKFILE_PATH := $(abspath $(dir $(firstword $(MAKEFILE_LIST))))
 
 PATH_TO_EMCC = $(MKFILE_PATH)/emscripten/emcc.bat
-HEADER_FILES = canvas.h ChartJS_handler.h html_canvas.h simulation.h statistics_handler.h subject.h
+HEADER_FILES = canvas.h ChartJS_handler.h html_canvas.h simulation.h statistics_handler.h subject.h lockdown_movement_strategy.h regular_movement_strategy.h movement_strategy.h
 SOURCE_FILES = ChartJS_handler.cpp html_canvas.cpp main.cpp simulation.cpp subject.cpp
 
 OUTPUT_PATH=$(MKFILE_PATH)/build/

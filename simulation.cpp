@@ -18,6 +18,7 @@
 #include <iostream>
 #include <emscripten.h>
 #include <math.h>
+#include "restricted_movement_strategy.h"
 
 namespace corsim
 {
@@ -85,6 +86,17 @@ void Simulation::tick()
         {
             numberInfected++;
         }
+
+        if (numberInfected == _subjects.size() / 2)
+        {
+            int percentage_amount = _subjects.size() * 75 / 100;
+
+            for (int i = 0; i < percentage_amount; i++)
+            {
+                Subject& s = _subjects[i];
+                s.set_movement_strategy(new RestrictedMovementStrategy());
+            }
+        }
     }
 
     if(counter % 30 == 0)
@@ -92,7 +104,6 @@ void Simulation::tick()
         _sh.get()->communicate_number_infected(counter/30,numberInfected);
     }
     
-
     draw_to_canvas();
 }
 
