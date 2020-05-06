@@ -42,7 +42,7 @@ void Simulation::run()
     while(true)
     {
         this->tick();
-        // emscripten_sleep(tick_speed);
+        emscripten_sleep(tick_speed);
     }
 }
 

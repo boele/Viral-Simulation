@@ -21,6 +21,7 @@
 #include "html_canvas.h"
 #include "ChartJS_handler.h"
 #include "regular_movement_strategy.h"
+#include "lockdown_movement_strategy.h"
 
 //Constants to control the simulation
 const int SUBJECT_COUNT = 200;
@@ -44,8 +45,14 @@ int main() {
     {
         double x = dist_w(mt); //Randomly generate x position
         double y = dist_h(mt); //Randomly generate y position
-        
+        int percentage_amount = SUBJECT_COUNT * 75 / 100;
+
         corsim::Subject su(x,y,SUBJECT_RADIUS,false, new corsim::RegularMovementStrategy());
+
+        if (i <= percentage_amount)
+        {
+            su.set_movement_strategy(new corsim::LockdownMovementStrategy());
+        }
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
