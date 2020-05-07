@@ -5,6 +5,10 @@
 namespace corsim
 {
 
+/**
+* Assigment B.1
+* Restricted movement strategy for very slow movement speed of subject
+*/
 class RestrictedMovementStrategy : public MovementStrategy 
 {
     public:

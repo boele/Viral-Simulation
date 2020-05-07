@@ -91,6 +91,10 @@ void Simulation::tick()
             numberInfected++;
         }
 
+        /**
+        * Assignment B.1
+        * 75% random slower movement speed of subjects
+        */
         if (numberInfected == subject_amount / 2)
         {
             int percentage_amount = subject_amount * 75 / 100;

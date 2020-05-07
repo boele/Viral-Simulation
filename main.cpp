@@ -49,10 +49,14 @@ int main() {
 
         corsim::Subject su(x,y,SUBJECT_RADIUS,false, new corsim::RegularMovementStrategy());
 
-        // if (i <= percentage_amount)
-        // {
-        //     su.set_movement_strategy(new corsim::LockdownMovementStrategy());
-        // }
+        /** 
+        * Assignment A
+        * 75% no movement speed for subjects
+        */
+        if (i <= percentage_amount)
+        {
+            su.set_movement_strategy(new corsim::LockdownMovementStrategy());
+        }
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));

@@ -5,6 +5,10 @@
 namespace corsim
 {
 
+/**
+* Assigment A + B.1
+* Regular movement strategy for default movement speed of subject
+*/
 class RegularMovementStrategy : public MovementStrategy 
 {
     public:
