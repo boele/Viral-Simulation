@@ -51,7 +51,7 @@ int main() {
 
         /** 
         * Assignment A
-        * 75% no movement speed for subjects
+        * No movement speed for 75% of all subjects
         */
         if (i <= percentage_amount)
         {

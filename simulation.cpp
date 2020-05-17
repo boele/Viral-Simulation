@@ -126,6 +126,7 @@ void Simulation::slow_percentage_of_subjects(int numberInfected, int subject_amo
         subjects_indices.push_back(i);
     }
 
+    // Shuffle vector
     auto rng = std::default_random_engine {};
     std::shuffle(std::begin(subjects_indices), std::end(subjects_indices), rng);
 
