@@ -93,34 +93,11 @@ void Simulation::tick()
 
         /**
         * Assignment B.1
-        * 75% random slower movement speed of subjects
+        * 75% random slower movement speed of subjects once half of the subject population gets infected 
         */
-        if (numberInfected == subject_amount / 2)
+        if (numberInfected == (subject_amount / 2))
         {
-            int percentage_amount = subject_amount * 75 / 100;
-            int random_subject_counter = 0;
-            std::vector<int> subjects_indices;
-            subjects_indices.reserve(subject_amount);
-
-            for (size_t i = 0; i < subject_amount; i++)
-            {
-                subjects_indices.push_back(i);
-            }
-
-            auto rng = std::default_random_engine {};
-            std::shuffle(std::begin(subjects_indices), std::end(subjects_indices), rng);
-
-            for (auto&& i : subjects_indices)
-            {
-                if (random_subject_counter > percentage_amount)
-                {
-                    break;
-                }
-
-                Subject& s = _subjects[i];
-                s.set_movement_strategy(new RestrictedMovementStrategy());
-                random_subject_counter++;
-            }
+            slow_percentage_of_subjects(numberInfected, subject_amount, 75);
         }
     }
 
@@ -130,6 +107,39 @@ void Simulation::tick()
     }
     
     draw_to_canvas();
+}
+
+
+/**
+* Assignment B.1
+* Slow percentage of subjects movement speed
+*/
+void Simulation::slow_percentage_of_subjects(int numberInfected, int subject_amount, int percentage)
+{
+    int percentage_amount = subject_amount * percentage / 100;
+    int random_subject_counter = 0;
+    std::vector<int> subjects_indices;
+    subjects_indices.reserve(subject_amount);
+
+    for (size_t i = 0; i < subject_amount; i++)
+    {
+        subjects_indices.push_back(i);
+    }
+
+    auto rng = std::default_random_engine {};
+    std::shuffle(std::begin(subjects_indices), std::end(subjects_indices), rng);
+
+    for (auto&& i : subjects_indices)
+    {
+        if (random_subject_counter > percentage_amount)
+        {
+            break;
+        }
+
+        Subject& s = _subjects[i];
+        s.set_movement_strategy(new RestrictedMovementStrategy());
+        random_subject_counter++;
+    }
 }
 
 void Simulation::draw_to_canvas()

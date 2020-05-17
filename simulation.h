@@ -42,6 +42,7 @@ class Simulation
         void static_collision(Subject& s1, Subject& s2, bool emergency);
         void tick();
         void draw_to_canvas();
+        void slow_percentage_of_subjects(int numberInfected, int subject_amount, int percentage);
 
         std::unique_ptr<Canvas> _canvas;
         std::vector<Subject> _subjects;
